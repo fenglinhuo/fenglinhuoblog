@@ -1,0 +1,20 @@
+{
+  "name": "testobject",
+  "version": "0.0.5",
+  "description": "bjn data adpter",
+  "main": "picture.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": {
+    "name": "{\"name\":\"bjn\",\"email\":\"firstgeniusboy@163.com\"}"
+  },
+  "license": "BSD",
+  "_id": "testobject@0.0.5",
+  "readme": "ERROR: No README.md file found!",
+  "dist": {
+    "shasum": "c0838ffa35e56839ce0e5f21ccc42d5977405e47"
+  },
+  "_from": "testobject@0.0.5"
+}
