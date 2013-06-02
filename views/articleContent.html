@@ -1,0 +1,183 @@
+<div class="offset1 span8">
+<article class="panel" id="A01V">
+<header class="page-header">
+<h4 class="ng-binding">{{title}}</h4>
+<span class="ng-binding" ng-bind="converTime(createTime)"></span>
+<ul class="list-inline">
+    <li style="" ng-show="article.refer">引文:<a href="http://www.oschina.net/news/39269/blink-rendering-engine-for-chromium" class="ng-binding" ng-href="http://www.oschina.net/news/39269/blink-rendering-engine-for-chromium">http://www.oschina.net/…</a></li>
+    <li class="ng-binding">发表:{{createAfterTime}}天前</li>
+    <li class="ng-binding">访问:{{lookTimes}}次</li>
+    <li><a class="btn btn-mini btn-success ng-binding" ng-click="reply(article)">{{replyNum}} 条评论</a></li>
+    <li style="display: none;" ng-show="isMe||isEditor"><a href="http://www.angularjs.cn/A01V/edit" class="btn btn-mini btn-primary" ng-href="/A01V/edit">编辑</a></li>
+</ul>
+<!-- tag 保留 
+<ul class="list-inline">
+    // ngRepeat: tag in article.tagsList
+    <li class="ng-scope" ng-repeat="tag in article.tagsList">
+    <a href="http://www.angularjs.cn/T00j" ng-href="/T00j" class="btn btn-mini ng-binding">WebKit</a>
+    </li><li class="ng-scope" ng-repeat="tag in article.tagsList">
+    <a href="http://www.angularjs.cn/T00h" ng-href="/T00h" class="btn btn-mini ng-binding">Blink</a>
+    </li>
+</ul>
+-->
+
+</header>
+<section class="ng-binding parse-markdown" ng-parse-markdown="content">
+
+                <div ng-bind-html="content">
+                </div>
+
+</section>
+<footer class="clearfix page-footer">
+<div class="btn-toolbar pull-right">
+    <div class="btn-group">
+        <a type="button" class="btn btn-small btn-success ng-binding" ng-click="setFavor(articleId)">支持 {{favor}}</a>
+        <a type="button" class="btn btn-small ng-binding" ng-click="setOppose(articleId)">反对 {{oppose}}</a>
+    </div>
+    <div class="btn-group">
+        <!-- <a type="button" ng-click="submit_comments(articleId)" class="btn btn-small btn-success">发表评论</a> -->
+        <!-- <a type="button" href="#comment" class="btn btn-small btn-success">发表评论</a> -->
+
+    </div>
+</div>
+
+<!--
+<ul style="display: none;" class="list-inline" ng-show="article.favorsList">
+    <li>支持：</li>
+</ul>
+<ul style="display: none;" class="list-inline" ng-show="article.opposesList">
+    <li>反对：</li>
+</ul>
+<ul style="display: none;" class="list-inline" ng-show="article.markList">
+    <li>收藏：</li>
+</ul>
+<div style="display: none;" ng-show="article.collection">所属合集：<a href="http://www.angularjs.cn/" class="ng-binding" ng-href="/"></a>
+</div> -->
+
+</footer>
+</article>
+
+<article class="panel">
+<header class="page-header">
+<h4>发表评论</h4>
+</header>
+<section id="replyDiv">
+<label>用户名<input type="text" placeholder="匿名" ng-model="author"></input></label>
+<textarea ng-model="comment" name="comment" id="comment">
+</textarea>
+<label>提交评论 <a class="btn btn-small btn-success" type="button" ng-click="submit_comments(articleId);">发表</a></label>
+</section>
+<footer>
+</footer>
+</article>
+
+<ul class="media-list panel">
+
+    <li  class="media ng-scope" ng-repeat="comment in comments">
+    <div id="{{comment._id}}">
+        <a class="pull-left">
+            <img  class="media-object" ng-src="http://www.gravatar.com/avatar/7e89d512d11e639e55faa756fdf60007">
+        </a>
+        <div class="media-body" id="A01I">
+            <header class="media-heading">
+            <h6><a class="ng-binding" href="javascript:void(0)">评论:{{title}}</a></h6>
+            </header>
+            <div class="media-content ng-binding parse-markdown" ng-parse-markdown="comment.content"><p>{{comment.content}}</p>
+            </div>
+            <footer>
+            <span class="ng-binding"><a href="javascript:void(0)" class="ng-binding" >{{comment.author}}</a>
+                <span ng-bind="converTime(comment.publishTime)"> 发表</span>
+
+                <div class="btn-toolbar pull-right">
+                    <!-- <div class="btn-group">
+                        <a type="button" class="btn btn-mini  btn-success ng-binding" ng-click="setFavor()">支持[1]</a>
+                        <a type="button" class="btn btn-mini  btn-success ng-binding" ng-click="getComments()">评论[0]</a>
+                        <a type="button" class="btn btn-mini btn-info ng-binding" ng-click="setOppose()">反对[0]</a>
+                    </div> -->
+                    <div class="btn-group">
+                        <a type="button"  class="btn btn-mini btn-success" ng-click="" onclick="reply('{{comment._id}}','{{comment._id}}','{{comment.author}}')">回复</a>
+                    </div>
+                </div>
+
+                </footer>
+            </div>
+        </div>
+
+
+
+        <div id="{{comment._id}}{{$index}}" class="offset1" ng-repeat="subComment in comment.comments">
+            <a class="pull-left">
+                <img  class="media-object" ng-src="http://www.gravatar.com/avatar/7e89d512d11e639e55faa756fdf60007">
+            </a>
+            <div class="media-body" id="A01I">
+                <header class="media-heading">
+                <h6><a class="ng-binding" href="javascript:void(0)">{{subComment.title}}</a></h6>
+                </header>
+                <div class="media-content ng-binding parse-markdown" ng-parse-markdown="subComment.content"><p>{{subComment.content}}</p>
+                </div>
+                <footer>
+                <span class="ng-binding"><a href="javascript:void(0)" class="ng-binding" >{{subComment.author}}</a>
+                    <span ng-bind="converTime(subComment.publishTime)"> 发表</span>
+
+                    <div class="btn-toolbar pull-right">
+                        <!-- <div class="btn-group">
+                            <a type="button" class="btn btn-mini  btn-success ng-binding" ng-click="setFavor()">支持[1]</a>
+                            <a type="button" class="btn btn-mini  btn-success ng-binding" ng-click="getComments()">评论[0]</a>
+                            <a type="button" class="btn btn-mini btn-info ng-binding" ng-click="setOppose()">反对[0]</a>
+                        </div> -->
+                        <div class="btn-group">
+                            <a type="button"  class="btn btn-mini btn-success" ng-click="" onclick="reply('{{comment._id}}{{$index}}','{{comment._id}}','{{subComment.author}}')">回复</a>
+                        </div>
+                    </div>
+
+                    </footer>
+                </div>
+            </div>
+
+
+
+
+
+        </li>
+
+
+
+
+
+</ul>
+
+<div id="tmp" style="display:none">
+<section id="replyDiv2" ng-show="isReply">
+<span ng-bind="replyTitle"></span>
+<label>用户名<input type="text" placeholder="匿名" ng-model="author"></input></label>
+<textarea ng-model="comment" name="comment" id="comment">
+</textarea>
+<a class="btn btn-small btn-success" type="button" ng-click="submit_comments(articleId);" href="javascript:void(0)">发表</a>
+</section>
+</div>
+
+<!--
+        <div class="row-fluid img-polaroid" style="min-height:600px;margin-bottom:10px;">
+            <div class="row-fluid">
+                <div class="offset4">
+                    <h2>{{title}}</h2>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div ng-bind-html-unsafe="content">
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid img-polaroid">
+            <div ng-repeat="comment in comments" class="row-fluid">
+                <div class="span" style="margin-top:10px;">
+                    {{comment.author}}:{{comment.content}}
+                </div>
+            </div>
+        </div>
+            -->
+
+</div>
+<div class="span3">
+</div>
+

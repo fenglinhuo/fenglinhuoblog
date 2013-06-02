@@ -1,0 +1,144 @@
+<div class="offset1 span10" ng-init="isLogin=<%= isLogin %>">
+    <article class="panel" id="A01V">
+    <header class="page-header">
+    </header>
+    <section class="ng-binding parse-markdown row" ng-parse-markdown="content" style="position:relative;" >
+    <div class="span3">
+        <input ng-show=false type="text" ng-model="currUser" ></input>
+        <input ng-show=false type="text" ng-model="home_user" ></input>
+
+        <span>
+
+            <div class="round-right" id="side">
+                <div id="sideinfo">
+                    <a href="#myModal" data-toggle='modal' ng-click=showUserInfo(currUserInfo) ><img ng-src={{currUserInfo.profile_image_url}} id="sideimg"></a>
+                    <span id="sideid"><span id="side_name"><a title="刷新个人资料" id="profileRefresh" href="#myModal" data-toggle='modal' ng-click=showUserInfo(currUserInfo) >{{currUserInfo.screen_name}}</a></span></span>
+                    <a href="javascript:void(0)" ng-click=getTwitterByUser(currUser) ><span id="me_tweets"><span id="update_count">{{currUserInfo.statuses_count}}</span> 推</span></a>
+                </div>
+                <hr>
+                <ul id="user_stats">
+                    <li>
+                    <a href="javascript:void(0)">
+                        <span class="count">{{currUserInfo.friends_count}}</span>
+                        <span class="label">已关注</span>
+                    </a>
+                    </li>
+                    <li>
+                    <a href="javascript:void(0)">
+                        <span class="count">{{currUserInfo.followers_count}}</span>
+                        <span class="label">关注者</span>
+                    </a>
+                    </li>
+                    <li>
+                    <a href="javascript:void(0)">
+                        <span class="count">{{currUserInfo.listed_count}}</span>
+                        <span class="label">被列入</span>
+                    </a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="clear"></div>
+            </div>
+
+        </span>
+
+
+
+        <span class="span" ng-show=isLogin>
+            <textarea id="twitterEdit" style="height:150px" ng-model=twitterContent>
+            </textarea>
+            <span class="btn btn-success" ng-click="postTwitter()">submit</span>
+            <span class="btn btn-midem btn-block btn-primary" ng-click="getLast()">twitter</span>
+            <span class="btn btn-midem btn-block btn-primary" ng-click="getMention()"> @ME</span>
+            <span class="btn btn-midem btn-block btn-primary" ng-click="getTwitterByUser(currUserInfo.screen_name)">
+                我的twitter
+            </span>
+
+        </span>
+
+    </div>
+    <div class="span8" style="position:relative;">
+        <ol>
+            <li ng-repeat="tw in tws" style="margin-top:10px">
+            <span class="status_author">
+                <a href="javascript:void(0);"><img title="{{tw.user.description}}" ng-src="{{tw.user.profile_image_url}}" id="avatar"></a>
+            </span>
+
+
+            <span class="status_body">
+                <span class="status_id">{{tw.id_str}}</span>
+                <span class="status_word">
+
+                    <a href="#myModal" data-toggle='modal' ng-click=showUserInfo(tw.user) ng-show=isLogin  class="user_name">{{tw.user.name}}</a> 
+                    <a href="javascript:void(0)" data-toggle='modal' ng-hide=isLogin  class="user_name">{{tw.user.name}}</a> 
+                    <span class="tweet" ng-bind-html=tw.text>
+                    </span>
+                    <div id="thumb_pic" ng-show=tw.pictureUrl>
+                        <a rel="noreferrer" target="_blank" href={{tw.pictureUrl}}>
+                            <img ng-src={{tw.pictureUrl}}>
+                        </a>
+                    </div>
+
+
+                </span>
+
+                <span class="status_info">
+                    <span class="date">{{tw.created_at | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+                    <span><a href="javascript:void(0);">@{{tw.user.screen_name}}</a></span>
+                    <span><a href="javascript:void(0);" ng-click=rtTwitter(tw.user.screen_name,tw.text);>RT</a></span>
+                </span>
+
+            </span>
+            </li>
+        </ol>
+        <ol>
+            <li ng-show=flushing>
+            <img src="/img/square.gif" alt="Loading..." style="margin-left:50%"> 刷新中</img>
+            </li>
+        </ol>
+
+    </div>
+    <div class="progress progress-striped active" style="position: absolute; top: 80px; z-index: 9999; width: 30%; left: 45%;" ng-show=loadding>
+        <div class="bar" style="width: 100%;">loadding</div>
+    </div>
+
+    <div class="span8 offset6"><button class="btn btn-large btn-block btn-primary span3" ng-click="getBefore()" ng-hide=flushing||loadding> 刷新 </button></div>
+
+
+
+    </section>
+    <footer class="clearfix page-footer">
+    </footer>
+</div>
+
+
+
+<div  aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade" id="myModal" style="left:50%;overflow:hidden" >
+    <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <h3 id="myModalLabel">个人信息</h3>
+    </div>
+    <div class="modal-body">
+        <div class="span">
+            <div>
+                <img ng-src={{user.profile_image_url}}></img>
+            </div>
+            <hr>
+        </div>
+        <span class="span">用户:<a>{{user.screen_name}}</a></span>
+        <span class="span">位置:<a>{{user.location}}</a></span>
+        <span class="span">描述:<a>{{user.description}}</a></span>
+        <span class="span">following :<a>{{user.followers_count}}</a></span>
+        <span class="span">friends :<a>{{user.friends_count}}</a></span>
+        <span class="span">twitters :<a ng-click=getTwitterByUser(user.screen_name)>{{user.statuses_count}}</a></span>
+    </div>
+    <div class="modal-footer">
+    </div>
+</div>
+
+
+
+
+
+
+

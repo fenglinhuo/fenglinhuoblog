@@ -1,0 +1,66 @@
+<div class="offset1 span10">
+     <article class="panel" id="A01V">
+     <header class="page-header">
+     <div class="offset2">
+         <h3>{{title}}</h3>
+         <!-- <span ng-bind=info.description></span>
+         <span class="offset1" ng-bind="info.pubDate|date:'yyyy-MM-dd HH:mm:ss Z'" ></span>
+         -->
+     </div>
+     </header>
+     <section class="ng-binding parse-markdown" ng-parse-markdown="content">
+     <div class="tabbable tabs-left">
+         <ul class="nav nav-tabs">
+             <li class=""> 
+             <a data-toggle="tab" ng-click="getSettingContent('/userpanel/editorArticle')" href="#A1">
+                 添加文章
+
+             </a>
+             </li>
+
+             <li class=""> 
+             <a data-toggle="tab" ng-click="getSettingContent('/userpanel/uploadPicture')" href="#A1">
+                 上传图片
+             </a>
+             </li>
+
+             <li class=""> 
+             <a data-toggle="tab" ng-click="getSettingContent('/userpanel/setting')" href="#A1">
+                 rss设置
+
+             </a>
+             </li>
+
+             <li class=""> 
+             <a data-toggle="tab" ng-click="getSettingContent('/userpanel/setPictureList')" href="#A1">
+                 图片列表
+
+             </a>
+             </li>
+
+             <li class=""> 
+             <a data-toggle="tab" ng-click="getSettingContent('/userpanel/setPasswd')" href="#A1">
+                 密码修改
+             </a>
+             </li>
+
+             <li class=""> 
+             <a data-toggle="tab" ng-click="getSettingContent('/userpanel/setTwitter')" href="#A1">
+                 twitter set
+             </a>
+             </li>
+         </ul>
+
+         <div class="tab-content accordion tab-pane" id="A1" ng-include src="setting">
+
+         </div>
+
+
+
+     </div>
+     </section>
+     <footer class="clearfix page-footer">
+     </footer>
+
+
+</div>

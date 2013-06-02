@@ -1,0 +1,30 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#/blog">风林火山</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="active"><a href="#/blog">主页</a></li>
+                    <li><a href="#/picture">图片库</a></li>
+                    <li><a href="#/rss">rss</a></li>
+                </ul>
+                <% if(typeof user == "undefined"){ %>
+                <form method="post" action="/user/login" class="navbar-form pull-right">
+                    <input class="span2" type="text" name="user" placeholder="Email">
+                    <input class="span2" type="password" name="passwd" placeholder="Password">
+                    <button type="submit" class="btn">Sign in</button>
+                </form>
+                <% } else { %>
+                   <a class="btn btn-large btn-primary disabled pull-right"> <%= user %> </a>
+                <% } %>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+
+</div>
+

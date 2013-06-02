@@ -1,0 +1,52 @@
+<div class="container-fluid" ng-controller="uploadPictureCtrl">
+
+    <div class="row-fluid">
+        <form class="span8 panel form-horizontal" enctype="multipart/form-data" method="post" action="/userpanel/uploadPicture">
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label">图片列表 </label>
+                    <div class="controls">
+                        <select ng-model=color ng-options="p.title for p in plist">
+                            <option value="">--请选择--</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="p_listName" value={{color.name}} ></input>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">图片名</label>
+                    <div class="controls">
+                        <input type="text" class="input-big" name="p_name"></input>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">说明</label>
+                    <div class="controls">
+                        <input type="text" class="input-big" name="p_snippet"></input>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">添加链接</label>
+                    <div class="controls">
+                        <input type='text' class="input-big" name='p_link'></input>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">上传文件</label>
+                    <div class="controls">
+                        <input type="file" name="p_name"></input>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">确定上传</label>
+                    <div class="controls">
+                        <input type="submit" value="确定上传"></input>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+        </div>
+    </div>

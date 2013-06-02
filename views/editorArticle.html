@@ -1,0 +1,26 @@
+
+<div class='row-fluid' ng-controller="editorCtrl">
+    <div class='offset3 span6 panel'>
+        <form method="post" action="/userpanel/saveArticle" >
+            <div class='row-fluid'>
+                <label class="span6">标题<input type='text' name='title'></input></label>
+            </div>
+            <div class="row-fluid">
+                <textarea id="myEditor" name="myEditor" class="span" style="height: 300px;max-height:500px; border: 1px solid #000;overflow-y:auto;">
+                </textarea>
+            </div>
+            <div class='row-fluid'>
+                <button type="submit" class="span2">submit</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+<!-- <script src="/editor/nicEdit.js"></script> -->
+<script>
+    /*
+    $(function(){
+        area1 = new nicEditor({fullPanel : true}).panelInstance('myEditor',{hasPanel : true});
+    });*/
+</script>
+

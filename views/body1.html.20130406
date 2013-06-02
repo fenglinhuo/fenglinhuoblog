@@ -1,0 +1,53 @@
+<div class="span9">
+    
+    <div class="hero-unit" ng-repeat="item in users">
+        <div class="row">
+            <div class="span6 offset3"><h1>title</h1></div>
+        </div>
+        <div class="row">
+            <h2>{{item.title}}</h2>
+            <div ng-bind-html-unsafe="item.content">
+            </div>
+        </div>
+        <div class="row">
+            
+             <button type="button" class="offset8 span1 btn btn-primary" ng-click="getContent(item.id)">详细</button>
+             <button type="button" class="span1 btn btn-primary" ng-click="enterContent(item.id)">进入</button>
+         </div>
+    </div>
+
+
+    <div class="pagination offset2">
+        <ul>
+            <li><a ng-click="getList(prev)">Prev</a></li>
+
+            <li ng-repeat="n in range()" ng-click="getList(n)">
+            <a ng-bind="n">n</a>
+            </li>
+            <li><a ng-click="getList(next)">Next</a></li>
+        </ul>
+    </div>
+</div>
+<div class="span3">
+    <div id="myCarousel" class="carousel slide" style="height:300px">
+        <% include picture %>
+    </div>
+    <div id="myDate">
+    </div>
+</div>
+
+<div id="acticleContent" class="acticleM span9 modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel"></h3>
+    </div>
+    <div class="modal-body">
+        <h3>{{article.title}}</h3>
+        <p ng-bind-html-unsafe="article.content"></p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+        <button class="btn btn-primary">Save changes</button>
+    </div>
+</div>
+

@@ -1,0 +1,62 @@
+<div class="container-fluid" ng-controller="settingPictureListCtrl">
+
+    <div class="row-fluid">
+        <div class="span10 panel form-horizontal">
+            <fieldset>
+
+
+                <ul>
+                    <li>
+                    <span>
+                        <button class="btn btn-danger btn-small" ng-click="addList()" type="button">添加</button>
+                    </span>
+
+                    <div class="control-group" ng-show=isAdd>
+                        <input type="text" class="span4" ng-model=add_title> </input>
+                        <input type="text" class="span6" ng-model=add_name> </input>
+                        <button class="btn btn-success btn-small" ng-click="save(add_title,add_name)" type="button">保存</button>
+                    </div>
+                    </li>
+                    <li ng-repeat="p in PictureList">
+                    <div class="control-group">
+                        <input type="text" class="span4" ng-model=p.title> </input>
+                        <input type="text" class="span6" ng-model=p.name> </input>
+                            <button class="btn btn-danger btn-small" ng-click="del(p.title,p.name)" type="button">删除</button>
+                            <button class="btn btn-success btn-small" ng-click="mod(p._id,p.title,p.name)" type="button">修改</button>
+                    </div>
+                    </li>
+                </ul>
+
+                <!-- 
+                <div class="control-group">
+                    <label class="control-label">图片名</label>
+                    <div class="controls">
+                        <input type="text" class="input-big" name="p_name"></input>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">说明</label>
+                    <div class="controls">
+                        <input type="text" class="input-big" name="p_snippet"></input>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">添加链接</label>
+                    <div class="controls">
+                        <input type='text' class="input-big" name='p_link'></input>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">上传文件</label>
+                    <div class="controls">
+                        <input type="file" name="p_name"></input>
+                    </div>
+                </div> -->
+
+            </fieldset>
+        </div>
+
+        </div>
+    </div>

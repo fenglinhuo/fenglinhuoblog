@@ -1,0 +1,26 @@
+<div class="span9">
+    <div class="container">
+
+        <div class="row-fluid img-polaroid" style="min-height:600px;margin-bottom:10px;">
+            <div class="row-fluid">
+                <div class="offset4">
+                    <h2>{{title}}</h2>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div ng-bind-html-unsafe="content">
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid img-polaroid">
+            <div ng-repeat="comment in comments" class="row-fluid">
+                <div class="span" style="margin-top:10px;">
+                    {{comment.author}}:{{comment.content}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="span3">
+</div>
+

@@ -1,0 +1,103 @@
+<div class="offset1 span7">
+    
+    <div class="hero-unit articleList" ng-repeat="item in users">
+
+        <header class="media-heading">
+        <h5><a href="#/articleContent/{{item._id}}" class="ng-binding" >{{item.title}}</a>
+            <i style="display: none;" ng-show="article.status==2" class="glyphi
+                con glyphicon-hand-up text-success" title="置顶"></i>
+            <i style="display: none;" ng-show="article.status&gt;=1" class="gly
+                phicon glyphicon-fire text-hot" title="推荐"></i>
+            <i class="btn btn-mini pull-right ng-binding" style="color:black;" title="热度">{{item.lookTimes}}</i>
+        </h5>
+        </header>
+        <section class="media-content ng-binding parse-markdown" ng-parse-markdown="item.content">
+        <div class="row">
+            <div class="span" style="margin-left:20px">
+                <p class="prettyprint"  ng-bind-html="item.content"></p>
+                <p class="prettyprint"></p>
+            </div>
+        </div>
+        </section>
+
+
+        <div class="row">
+            
+            <!--  <button type="button" class="offset8 span2 btn btn-primary" ng-click="getContent(item.id)">详细</button> -->
+             <button type="button" class="offset9 span2 btn btn-primary" ng-click="enterContent(item._id)">进入</button>
+         </div>
+    </div>
+
+
+    <div class="pagination offset2">
+        <ul>
+            <li id="prev"><a id="prev" ng-click="getList(prev)">Prev</a></li>
+
+            <li ng-repeat="n in range()" ng-class="page{{n}}">
+            <a ng-click="getList(n);" ng-bind="n+1"></a>
+            </li>
+
+            <li id="next"><a ng-click="getList(next)">Next</a></li>
+        </ul>
+    </div>
+
+</div>
+<div class="span3"> 
+    <!--
+    <div id="myCarousel" class="carousel slide" style="height:300px">
+        <% include picture %>
+    </div>
+    <div id="myDate">
+    </div> -->
+
+    <div class="panel row">
+        <header class="panel-heading text-muted">
+        <span>
+            <h4>主人信息</h4>
+        </span>
+        </header>
+        <div class="inner">
+            <div class="media" style="margin:25px 0">
+                <a ng-href="/Uadmin" class="pull-left" href="/Uadmin">
+                    <img class="media-object" src="http://a0.twimg.com/profile_images/1172443307/2816157141990506156_normal.jpg">
+                </a>
+                <div class="media-body">
+                    <h5 class="media-heading"><a ng-href="/Uadmin" class="ng-binding" href="/Uadmin">风林火山</a></h5>
+                    <span ng-show=true class="ng-binding" style="">本店主人</span><br>
+                </div>
+            </div>
+            <div>
+                <ul>
+                    <li class="ng-binding" style="">
+                    <span class="text-muted">访问量</span> <%= webInfo.pv %>
+                    </li>
+                    <li class="ng-binding" style="">
+                    <span class="text-muted">最后访问IP </span> <%= webInfo.lastIp %>
+                    </li>
+                    <li class="ng-binding" style="">
+                    <span class="text-muted">最后访问时间</span><%= webInfo.lastTime %>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<div id="acticleContent" class="acticleM span9 modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel"></h3>
+    </div>
+    <div class="modal-body">
+        <h3>{{article.title}}</h3>
+        <p ng-bind-html-unsafe="article.content"></p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+        <button class="btn btn-primary">Save changes</button>
+    </div>
+</div>
+

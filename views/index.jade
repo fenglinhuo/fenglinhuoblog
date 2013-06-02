@@ -1,0 +1,20 @@
+p #{name}
+-for(var p in obj)
+    p #{p} #{obj[p]}
+
+- if (arr.length)
+ul
+    - arr.forEach(function(item){
+        li= item
+    - })
+
+- var foo = 'foo ' + 'bar'
+foo ='foo1 ' + 'bar'
+div=foo
+
+- var foo = 'bar'
+= foo
+h1= foo
+-var pets=["layout2"]
+each p1 in pets
+    p=p1

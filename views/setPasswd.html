@@ -1,0 +1,28 @@
+<div class="container-fluid" ng-controller="userPassCtrl">
+
+    <div class="row-fluid">
+        <div class="span8 panel form-horizontal">
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label">用户名</label>
+                    <div class="controls">
+                        <input type="text" class="input-big" name="name" ng-model="name"></input>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">密码</label>
+                    <div class="controls">
+                        <input type="password" class="input-big" name="passwd" ng-model="passwd"></input>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">提交</label>
+                    <div class="controls">
+                        <span class="btn btn-success" ng-click="submit()">确定</input>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>

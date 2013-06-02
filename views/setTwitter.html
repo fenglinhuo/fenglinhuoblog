@@ -1,0 +1,34 @@
+<div class="container-fluid" ng-controller="authTwitterCtrl">
+
+    <div class="row-fluid">
+        <div class="span8 panel form-horizontal">
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label">oauth_access_token</label>
+                    <div class="controls">
+                        <input type="text" class="input-big" name="name" ng-model=oauth_access_token></input>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">oauth_access_token_secret</label>
+                    <div class="controls">
+                        <input type="text" class="input-big" name="passwd" ng-model=oauth_access_token_secret></input>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">提交</label>
+                    <div class="controls">
+                        <span class="btn btn-success" ng-click="submitChange(oauth_access_token,oauth_access_token_secret)">修改</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="controls">
+                        <span class="btn btn-success" ng-click="authTwitter()">授权</span>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
