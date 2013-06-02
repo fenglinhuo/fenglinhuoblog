@@ -1,0 +1,29 @@
+'use strict';
+
+/* App Module */
+function GreetProvider(name) {
+    var salutation = !!name ? name : 'Hello';
+
+    this.salutation = function(text) {
+        salutation = text;
+    };
+    this.alert1= function(){
+        alert(salutation);
+    }
+
+    this.$get = function() {
+        return function (name) {
+            return salutation + ' ' + name + '!';
+        };
+    };
+}
+
+angular.module('phonecat', ['phonecatFilters', 'phonecatServices','ngSanitize']).
+  config(['$routeProvider','$provide', function($routeProvider,$provider) {
+  $routeProvider.when('/body1', {templateUrl: 'body1',controller: articlesCtrl}).
+      when('/body1/:id',{templateUrl:'body1',controller:articlesCtrl}).
+      when('/picture',{templateUrl:'/picture/index',controller:PictureCtrl}).
+      when('/articleContent/:articleId',{templateUrl:'/articleContent',controller:articleContent}).
+      when('/editor',{templateUrl:'editorArticle',controller:editorCtrl})
+      .otherwise({redirectTo: '/body1'});
+}]);
